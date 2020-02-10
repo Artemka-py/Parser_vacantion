@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,6 +28,7 @@ namespace WpfApp1
         IWebDriver driver;
         IWebElement searchinput;
         IWebElement go;
+        string papa;
 
         public MainWindow()
         {
@@ -91,7 +93,7 @@ namespace WpfApp1
 
         private void btPodat_Click(object sender, RoutedEventArgs e)
         {
-            string dolg, adress, usl, dozp, pozp;
+            string dolg, adress, usl, dozp, pozp, poln, nepoln, smen, vaxt;
             dolg = tbName_Dolgnost.Text.ToString();
             adress = tbAddres.Text.ToString();
             dozp = tbOtZarplata.Text.ToString();
@@ -116,6 +118,30 @@ namespace WpfApp1
                 Thread.Sleep(5000);
                 go = driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[1]/div[4]/div/div/div/div/div/form/div/div[1]/div/div/div[2]/div/div[1]/div/div[2]/div/div[1]/label/div/div/input"));
                 go.SendKeys(dolg.ToString() + Keys.Tab + Keys.Tab + Keys.Tab + Keys.Tab + adress.ToString());
+                go = driver.FindElement(By.Id("detailInfo.workType.id-input"));
+                go.Click();
+                if (papa == "Полная")
+                {
+                    go = driver.FindElement(By.Id("6"));
+                    go.Click();
+                }
+                if (papa == "Неполная")
+                {
+                    go = driver.FindElement(By.Id("10"));
+                    go.Click();
+                }
+                if (papa == "Сменная")
+                {
+                    go = driver.FindElement(By.Id("12"));
+                    go.Click();
+                }
+                else
+                {
+                    go = driver.FindElement(By.Id("9"));
+                    go.Click();
+                }
+                //SelectElement select = new SelectElement(go);
+                //select.SelectByIndex(10);
             }
             else
             {
@@ -126,6 +152,11 @@ namespace WpfApp1
                 string new_url = driver.Url.ToString();
                 go_go(new_url, dolg, adress, dozp, pozp);
             }
+        }
+
+        private void cbZanyatost_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            papa = cbZanyatost.Text;
         }
     }
 }

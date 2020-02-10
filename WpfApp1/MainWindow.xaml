@@ -45,11 +45,11 @@
             <StackPanel>
                 <Label Name="lblZanyatost" Content="Занятость" FontSize="13px"></Label>
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox Name="cbZanyatost" Height="30px" Margin="0 0 10 0" Width="300" SelectedIndex="0" FontSize="20px">
-                        <ComboBoxItem Content="Полная" FontSize="16px"/>
+                    <ComboBox Name="cbZanyatost" Height="30px" Margin="0 0 10 0" Width="300" SelectedIndex="0" FontSize="20px" SelectionChanged="cbZanyatost_SelectionChanged">
+                        <ComboBoxItem Content="Полная"  FontSize="16px"/>
                         <ComboBoxItem Content="Неполная" FontSize="16px"/>
-                        <ComboBoxItem Content="Сменная" FontSize="16px"/>
-                        <ComboBoxItem Content="Вахтовая" FontSize="16px"/>
+                        <ComboBoxItem Content="Сменная" FontSize="16px" />
+                        <ComboBoxItem Content="Вахтовая" FontSize="16px" />
                     </ComboBox>
                     <CheckBox Name="chbUdalenka" Content="Удаленная работа" FontSize="15px" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></CheckBox>
                 </StackPanel>
